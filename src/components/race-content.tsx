@@ -11,10 +11,10 @@ export default function RaceContent() {
         async function getRaceInfo() {
             const res = await fetch(url);
             const data = await res.json();
-            setRace(data.data)
+            setRace(data[0])
         }
         getRaceInfo();
-    })
+    }, []);
 
     return !race ?(
         <h1>Loading...</h1>
