@@ -16,6 +16,7 @@ const Title = styled.h2`
 `;
 
 function NavLink({to, children} : {to : string, children : React.ReactNode}) {
+    
     return (
         <Link style = {{padding : "0.5rem", margin : "0.25rem"}} to = {to}>
             {children}
