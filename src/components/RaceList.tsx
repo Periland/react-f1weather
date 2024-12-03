@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Race } from "../types";
+import { Link } from "react-router-dom";
 
 export default function RaceList() {
   const [races, setRaces] = useState<Race[]>([]);
@@ -11,7 +12,7 @@ export default function RaceList() {
         `https://api.openf1.org/v1/meetings`
       );
       const data = await res.json();
-      setRaces(data.data);
+      setRaces(data);
     }
     getRaces();
   });
@@ -25,11 +26,13 @@ export default function RaceList() {
 
   const RacePreview = ({ race }: { race: Race }) => {
     return (
-      <RacesPreviewDiv>
-        <h3>{race.meeting_name}</h3>
-        <p>{race.location}</p>
-        <p>{race.country_name}</p>
-      </RacesPreviewDiv>
+        <Link to={`/race/${race.meeting_key}`}>
+            <RacesPreviewDiv>
+              <h3>{race.meeting_name}</h3>
+              <p>{race.location}</p>
+              <p>{race.country_name}</p>
+            </RacesPreviewDiv>
+        </Link>
     );
   };
 
