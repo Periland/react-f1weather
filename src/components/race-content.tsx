@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { Position, Race } from "../types";
 import { useEffect, useState } from "react";
 import processPositionData from "../lib/raceResults";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function RaceContent() {
     const {id} = useParams();
@@ -19,7 +20,7 @@ export default function RaceContent() {
 
             const sessionRes = await fetch(urlSession);
             const sessionData = await sessionRes.json();
-            const session = sessionData[0].session_key
+            const session = sessionData[0].session_key;
             console.log("session: ", sessionData)
 
             const positionRes = await fetch(`https://api.openf1.org/v1/position?session_key=${session}`);
@@ -38,8 +39,11 @@ export default function RaceContent() {
         getInfo();
     }, []);
 
-    return !(drivers && race) ?(
-        <h1>Loading...</h1>
+
+    return !(position && race) ?(
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "80vh"}}>
+            <CircularProgress />
+        </div>
         ) : (
         <div>
             <h2>{race.meeting_name}</h2>
