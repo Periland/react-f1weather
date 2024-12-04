@@ -21,3 +21,9 @@ export type Position = {
     position : number;
     session_key : number;
 }
+
+export type Driver = {
+  driver_number : number;
+  full_name : string;
+  session_key : number;
+}
