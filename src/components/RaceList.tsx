@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Race } from "../types";
 import { Link } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function RaceList() {
+    const [loading, setLoading] = useState(true);
   const [races, setRaces] = useState<Race[]>([]);
 
   useEffect(() => {
@@ -13,6 +15,7 @@ export default function RaceList() {
       );
       const data = await res.json();
       setRaces(data);
+      setLoading(false);
     }
     getRaces();
   }, []);
@@ -44,13 +47,19 @@ export default function RaceList() {
 
   return (
     <div>
-      <div>
-        {races.map((race) =>
-          !race.meeting_name.includes("Testing") && (
-            <RacePreview key={race.meeting_key} race={race} />
-          )
-        )}
-      </div>
+        {loading 
+        ? 
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "80vh"}}>
+            <CircularProgress /> 
+        </div>
+        : 
+        <div>
+            {races.map((race) =>
+              !race.meeting_name.includes("Testing") && (
+                <RacePreview key={race.meeting_key} race={race} />
+              )
+            )}
+        </div>}
     </div>
   );
 }
