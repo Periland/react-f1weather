@@ -40,7 +40,7 @@ export default function RaceContent() {
     }, []);
 
 
-    return !(position && race) ?(
+    return !(drivers && race) ?(
         <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "80vh"}}>
             <CircularProgress />
         </div>
