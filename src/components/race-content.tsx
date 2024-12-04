@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Position, Race } from "../types";
+import { Driver, Position, Race } from "../types";
 import { useEffect, useState } from "react";
 import processPositionData from "../lib/raceResults";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -28,11 +28,12 @@ export default function RaceContent() {
             const driverPositions = processPositionData(positionData)
             console.log("pre driver name: ", JSON.stringify(driverPositions))
 
+            const driverRes = await fetch(`https://api.openf1.org/v1/drivers?session_key=${session}`);
+            const driverData = await driverRes.json();
             const driverList = [];
             for (const pos in driverPositions){
-                const driverRes = await fetch(`https://api.openf1.org/v1/drivers?driver_number=${driverPositions[pos]}`);
-                const driverData = await driverRes.json();
-                driverList.push(driverData[0].full_name);
+                const d = driverData.find((obj : Driver ) => obj.driver_number === driverPositions[pos]);
+                driverList.push(d.full_name);
             }
             setDrivers(driverList);
         }
