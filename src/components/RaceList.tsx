@@ -45,9 +45,11 @@ export default function RaceList() {
   return (
     <div>
       <div>
-        {races.map((race) => (
-          <RacePreview key={race.meeting_key} race={race} />
-        ))}
+        {races.map((race) =>
+          !race.meeting_name.includes("Testing") && (
+            <RacePreview key={race.meeting_key} race={race} />
+          )
+        )}
       </div>
     </div>
   );
