@@ -8,5 +8,6 @@ export default function processPositionData(positionData: Position[]) {
         finalPositions[p.position] = p.driver_number;
     })
     
+    console.log("in function: ", JSON.stringify(finalPositions))
     return finalPositions;
 }

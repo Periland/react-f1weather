@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Position, Race } from "../types";
 import { useEffect, useState } from "react";
+import processPositionData from "../lib/raceResults";
 
 export default function RaceContent() {
     const {id} = useParams();
     const [race, setRace] = useState<Race | null>(null)
-    const [position, setPosition] = useState<Position[] | null>(null)
+    const [drivers, setDrivers] = useState<String[] | null>(null)
     let urlRace = `https://api.openf1.org/v1/meetings?meeting_key=${id}`
     let urlSession = `https://api.openf1.org/v1/sessions?meeting_key=${id}&session_type=Race`
 
@@ -23,22 +24,32 @@ export default function RaceContent() {
 
             const positionRes = await fetch(`https://api.openf1.org/v1/position?session_key=${session}`);
             const positionData = await positionRes.json();
-            setPosition(positionData);
-            console.log("position: ", positionData)
+            const driverPositions = processPositionData(positionData)
+            console.log("pre driver name: ", JSON.stringify(driverPositions))
+
+            const driverList = [];
+            for (const pos in driverPositions){
+                const driverRes = await fetch(`https://api.openf1.org/v1/drivers?driver_number=${driverPositions[pos]}`);
+                const driverData = await driverRes.json();
+                driverList.push(driverData[0].full_name);
+            }
+            setDrivers(driverList);
         }
         getInfo();
     }, []);
 
-    return !(position && race) ?(
+    return !(drivers && race) ?(
         <h1>Loading...</h1>
         ) : (
         <div>
             <h2>{race.meeting_name}</h2>
             <p>Country: {race.country_name}</p>
-            <p>Date: {String(race.date_start)}</p>
-            {position.map((p) => (
-                <p>{p.position}</p>
-            ))}
+            <p>Date: {race.date_start}</p>
+            <ol>
+                {drivers.map((d) => (
+                    <li>{d}</li>
+                ))}
+            </ol>
         </div>
     );
 }
