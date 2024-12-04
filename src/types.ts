@@ -7,7 +7,7 @@ export type Race = {
   country_name: string;
   circuit_key: number;
   circuit_short_name: string;
-  date_start: Date;
+  date_start: string;
   gmt_offset: Date;
   meeting_key: number;
   year: number;
