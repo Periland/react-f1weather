@@ -5,11 +5,9 @@ import { useEffect, useState } from "react";
 export default function RaceContent() {
     const {id} = useParams();
     const [race, setRace] = useState<Race | null>(null)
-    const [session, setSession] = useState<Number | null>(null)
     const [position, setPosition] = useState<Position[] | null>(null)
     let urlRace = `https://api.openf1.org/v1/meetings?meeting_key=${id}`
     let urlSession = `https://api.openf1.org/v1/sessions?meeting_key=${id}&session_type=Race`
-    let urlPosition = `https://api.openf1.org/v1/position?session_key=${session}`;
 
     useEffect(() => {
         async function getInfo() {
@@ -20,10 +18,10 @@ export default function RaceContent() {
 
             const sessionRes = await fetch(urlSession);
             const sessionData = await sessionRes.json();
-            setSession(sessionData[0].session_key);
+            const session = sessionData[0].session_key
             console.log("session: ", sessionData)
 
-            const positionRes = await fetch(urlPosition);
+            const positionRes = await fetch(`https://api.openf1.org/v1/position?session_key=${session}`);
             const positionData = await positionRes.json();
             setPosition(positionData);
             console.log("position: ", positionData)
@@ -31,7 +29,7 @@ export default function RaceContent() {
         getInfo();
     }, []);
 
-    return !(position && race && session) ?(
+    return !(position && race) ?(
         <h1>Loading...</h1>
         ) : (
         <div>
