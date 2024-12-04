@@ -15,7 +15,7 @@ export default function RaceList() {
       setRaces(data);
     }
     getRaces();
-  });
+  }, []);
 
   const RacesPreviewDiv = styled.div`
     margin: 3rem;
@@ -25,14 +25,20 @@ export default function RaceList() {
   `;
 
   const RacePreview = ({ race }: { race: Race }) => {
+    const date = new Date(race.date_start);
     return (
-        <Link to={`/race/${race.meeting_key}`}>
             <RacesPreviewDiv>
-              <h3>{race.meeting_name}</h3>
-              <p>{race.location}</p>
-              <p>{race.country_name}</p>
+              <h3><Link to={`/race/${race.meeting_key}`}>{race.meeting_name}</Link></h3>
+              <p>Date: 
+                {date.toLocaleDateString("en-US", 
+                    {
+                        weekday: "long", 
+                        year: "numeric", 
+                        month: "long", 
+                        day: "numeric",})}
+                </p>
+              <p>{race.location}, {race.country_name}</p>
             </RacesPreviewDiv>
-        </Link>
     );
   };
 
@@ -40,7 +46,7 @@ export default function RaceList() {
     <div>
       <div>
         {races.map((race) => (
-          <RacePreview race={race} />
+          <RacePreview key={race.meeting_key} race={race} />
         ))}
       </div>
     </div>
