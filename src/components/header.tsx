@@ -31,6 +31,7 @@ export default function Header() {
                 <NavLink to = "/">Home</NavLink>
                 <NavLink to = "/about">About</NavLink>
                 <NavLink to = "/races">Races</NavLink>
+                <NavLink to = "/drivers">Drivers</NavLink>
             </nav>
         </StyledHeader>
     );
