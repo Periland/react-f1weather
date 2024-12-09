@@ -1,3 +1,8 @@
+//File: RaceList.tsx
+//Author: Awad Khawaja (awadk@bu.edu)
+//Description: This file will be used to display all races 
+//for the f1 season and link each race to more information
+//about the race in the race-content page
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Race } from "../types";
