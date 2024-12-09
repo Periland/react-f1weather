@@ -61,7 +61,7 @@ export default function AboutPage() {
                 <Image src={JoseImage} alt="Jose" />
                 <TextContainer>
                     <h1>Jose Amusategui</h1>
-                    <p>I like designing websites and coding and stuff. like designing websites and coding and stuff. like designing websites and coding and stuff. like designing websites and coding and stuff. like designing websites and coding and stuff. like designing websites and coding and stuff. like designing websites and coding and stuff. like designing websites and coding and stuff. like designing websites and coding and stuff. like designing websites and coding and stuff.</p>
+                    <p>My name is Jose Maria Amusategui Garcia Peri and I am a senior majoring in Computer Science at Boston University with a minor in Business Administration. I am originally from Madrid, Spain and I have been living in the United States for the past 4 years. I am very interested in technology a whole and I hope to be able to use my skills to help develop impactful software.</p>
                 </TextContainer>
             </PersonContainer>
 
