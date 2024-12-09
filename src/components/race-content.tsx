@@ -65,21 +65,23 @@ export default function RaceContent() {
 
     useEffect(() => {
         async function getInfo() {
+            //Get data for the specific meeting
             const raceRes = await fetch(urlRace);
             const raceData = await raceRes.json();
             setRace(raceData[0]);
-            console.log("race: ", raceData)
 
+            //Get info for the specific session
             const sessionRes = await fetch(urlSession);
             const sessionData = await sessionRes.json();
             const session = sessionData[0].session_key;
-            console.log("session: ", sessionData)
 
+            //Get the position data for the specific session just aquired
             const positionRes = await fetch(`https://api.openf1.org/v1/position?session_key=${session}`);
             const positionData = await positionRes.json();
+            //Process the position data to find out the standings of the race
             const driverPositions = processPositionData(positionData)
-            console.log("pre driver name: ", JSON.stringify(driverPositions))
 
+            //Fetch the driver data and match to the winners of the race
             const driverRes = await fetch(`https://api.openf1.org/v1/drivers?session_key=${session}`);
             const driverData = await driverRes.json();
             const driverList = [];
