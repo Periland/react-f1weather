@@ -14,11 +14,13 @@ export default function RaceList() {
   const [races, setRaces] = useState<Race[]>([]);
 
   useEffect(() => {
+      // on page load we will get all the races from the api
     async function getRaces() {
       const res = await fetch(
         `https://api.openf1.org/v1/meetings`
       );
       const data = await res.json();
+        //Once we get the data we set loading to false and set the data to races
       setRaces(data);
       setLoading(false);
     }
@@ -49,6 +51,7 @@ export default function RaceList() {
   `;
 
   const RacePreview = ({ race }: { race: Race }) => {
+      //Each race will follow this format so each card looks the same and we can just map it to this
     const date = new Date(race.date_start);
     return (
             <RacesPreviewDiv>
