@@ -3,60 +3,64 @@
 // PAGE CREATED AND STYLED BY AN (SUE) NGO
 //
 //
+
+// Importing images for each person
 import JoseImage from "../jose.png";
 import MiloImage from "../milo.png";
 import SueImage from "../sue.png";
 import AwadImage from "../awad.png";
 
-// this is the home page
+// Importing styled-components for styling
 import styled from "styled-components";
 
+// Styling for the main container of the About Page
 const AboutDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #92140c;
+    background-color: #92140c; // Dark red background for the entire page
     height: 100vh;
-    color: #fff8f0;
-    font-family: 'Monaco', sans-serif;
-    font-size: calc(2px + 0.65vw);
-    
+    color: #fff8f0; // Light beige text color
+    font-family: 'Monaco', sans-serif; // Using a built-in monospaced font
+    font-size: calc(2px + 0.65vw); // Responsive font size
 `;
 
+// Styling for each person's container
 const PersonContainer = styled.div`
     display: flex;
-    
     justify-content: space-between;
     align-items: center;
-    width: 60%;
-    margin: 0.7rem 0;
-    background-color: #fff8e7;
-    color: #1e1e24;
-    border-radius: 10px;
-    padding: 1%;
+    width: 60%; // Restricting the width for better alignment
+    margin: 0.7rem 0; // Spacing between each container
+    background-color: #fff8e7; // Light beige background for individual boxes
+    color: #1e1e24; // Dark text for contrast
+    border-radius: 10px; // Rounded corners for a softer look
+    padding: 1%; // Padding inside the container
+
     &:nth-child(even) {
-        flex-direction: row-reverse; 
+        flex-direction: row-reverse; // Reverses the layout for even items to alternate the image position
     }
 `;
 
+// Styling for the images inside each person's container
 const Image = styled.img`
-    width: 200px;
-    height: auto;
-    
-    border-radius: 8px;
-    
+    width: 200px; // Fixed width for images
+    height: auto; // Maintain aspect ratio
+    border-radius: 8px; // Slightly rounded corners for the images
 `;
 
+// Styling for the text content inside each person's container
 const TextContainer = styled.div`
-    flex: 3;
-    text-align: center;
-   
+    flex: 3; // Takes more space to balance with the image
+    text-align: center; // Center-align text content
 `;
 
+// Main functional component for the About Page
 export default function AboutPage() {
     return (
         <AboutDiv>
+            {/* Container for Jose */}
             <PersonContainer>
                 <Image src={JoseImage} alt="Jose" />
                 <TextContainer>
@@ -65,6 +69,7 @@ export default function AboutPage() {
                 </TextContainer>
             </PersonContainer>
 
+            {/* Container for Milo */}
             <PersonContainer>
                 <Image src={MiloImage} alt="Milo" />
                 <TextContainer>
@@ -73,6 +78,7 @@ export default function AboutPage() {
                 </TextContainer>
             </PersonContainer>
 
+            {/* Container for Sue */}
             <PersonContainer>
                 <Image src={SueImage} alt="Sue" />
                 <TextContainer>
@@ -81,10 +87,11 @@ export default function AboutPage() {
                 </TextContainer>
             </PersonContainer>
 
+            {/* Container for Awad */}
             <PersonContainer>
                 <Image src={AwadImage} alt="Awad" />
                 <TextContainer>
-                    <h1>Awad </h1>
+                    <h1>Awad</h1>
                     <p>I’m An (Sue) Ngo, a senior majoring in Computer Science. I’m deeply interested in web development, distributed systems, and hardware technologies, and I enjoy working on projects with groupmates. Outside of academics, I’m a big fan of Formula 1 racing, and my favorite team is Ferrari! I also love exploring new ideas, solving challenging problems, and collaborating with others to bring ambitious projects to life</p>
                 </TextContainer>
             </PersonContainer>

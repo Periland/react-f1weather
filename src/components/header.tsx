@@ -67,6 +67,7 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
 
 export default function Header() {
     return (
+        //basically the parts of the top area that includes title and nav
         <StyledHeader>
             <Title>WELCOME TO OUR F1 APP!</Title>
             <nav>
