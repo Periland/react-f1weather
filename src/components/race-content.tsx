@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import styled from "styled-components";
 
 export default function RaceContent() {
+    //Written by Milo Zurn-Galinsky
     const {id} = useParams();
     const [race, setRace] = useState<Race | null>(null)
     const [drivers, setDrivers] = useState<String[] | null>(null)
@@ -62,7 +63,7 @@ export default function RaceContent() {
         padding-top: 0.2%;
     `;
 
-
+    //Written by Milo Zurn-Galinsky
     useEffect(() => {
         async function getInfo() {
             //Get data for the specific meeting
@@ -94,7 +95,7 @@ export default function RaceContent() {
         getInfo();
     }, []);
 
-
+    //Written by Milo Zurn-Galinsky
     return !(drivers && race) ?(
         <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "80vh"}}>
             <CircularProgress />
