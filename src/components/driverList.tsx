@@ -13,10 +13,17 @@ import Drivers from './drivers';
 import CircularProgress from '@mui/material/CircularProgress';
 
 
-//Styling needs to be finished also add Author
+//Styling done by An Ngo (some of the code was tweaked to make styling work)
 const ParentDiv=styled.div`
   width: 100%;
-  margin: auto;
+    
+  h1{
+    padding-left: 45%;
+    
+    color: #1e1e24;
+    
+  }
+   
 `;
 
 export default function DriverList() {
@@ -42,15 +49,17 @@ export default function DriverList() {
         <>
             {loading 
         ? 
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "80vh"}}>
+        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
             <CircularProgress /> 
         </div>
 
         :
+                
             <ParentDiv>
-                <h1>All Drivers</h1>
+                
                 <Drivers data={data} />
             </ParentDiv>
+            
         }
         </>
     )

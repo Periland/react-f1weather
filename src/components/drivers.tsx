@@ -7,13 +7,17 @@ import Driver from '../interfaces/driver';
 import styled from 'styled-components';
 import SingleDriver from './singleDriver';
 
-//Styling needs to be finished also add Author
+//Styling done by An (Sue) Ngo
 const AllDriversDiv=styled.div`
     display: flex;
     flex-flow: row wrap;    
     justify-content: space-evenly;
-    background-color: #FFFDD0;
+    background-image: linear-gradient(to bottom right, #003049 , #669bbc);
+    font-family: 'Monaco', sans-serif;
+    
 `;
+
+
 
 export default function Drivers(props : {data:Driver[] } ) {
     // Set up the data to be passed to the SingleDriver component so that it can be displayed

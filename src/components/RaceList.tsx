@@ -19,12 +19,28 @@ export default function RaceList() {
     }
     getRaces();
   }, []);
-
+  // STYLING DONE BY AN (SUE) NGO
+  const RacesContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); 
+  gap: 1rem; /* Spacing between the items */
+  font-family: 'Monaco', sans-serif;
+  padding: 0.5rem;
+  background-color: #92140c;
+  
+`;
   const RacesPreviewDiv = styled.div`
-    margin: 3rem;
-    padding: 1rem;
+    margin: 0.25rem;
+    padding: 0.25rem;
     width: 20rem;
-    background-color: lightblue;
+    border-radius: 10px;
+    display: block;
+  font-family: 'Monaco', sans-serif;
+    justify-content: space-evenly;
+    background-color: #fff8e7;
+
+  
+  
   `;
 
   const RacePreview = ({ race }: { race: Race }) => {
@@ -49,17 +65,17 @@ export default function RaceList() {
     <div>
         {loading 
         ? 
-        <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "80vh"}}>
+        <div style={{display: "flex", flexFlow: "row-wrap",justifyContent: "center", alignItems: "center", height: "80vh"}}>
             <CircularProgress /> 
         </div>
         : 
-        <div>
+        <RacesContainer>
             {races.map((race) =>
               !race.meeting_name.includes("Testing") && (
                 <RacePreview key={race.meeting_key} race={race} />
               )
             )}
-        </div>}
+        </RacesContainer>}
     </div>
   );
 }

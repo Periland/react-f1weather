@@ -11,13 +11,59 @@ import styled from 'styled-components';
 import CircularProgress from '@mui/material/CircularProgress';
 import DriverData from "../interfaces/driverData";
 
-//Styling needs to be finished also add Author
-const DriverDetailDiv=styled.div<{team_colour: string}>`
+
+// Styling done by An (Sue) Ngo
+const Div = styled.div`
+  background-color: #fff8e7;
+  padding-top:0.2%;
+`
+const DriverDetailDiv = styled.div<{ team_colour: string }>`
     display: flex;
-    flex-flow: column wrap;    
-    justify-content: space-evenly;
-    background-color: ${(props)=>("#" + props.team_colour)};
+    flex-direction: column;  
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Monaco', sans-serif;
+    background-color: ${(props) => "#" + props.team_colour};
+    color: #fff;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 60%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
+    img {
+        margin: 1rem auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: gold;
+        
+    }
+
+    p {
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+        line-height: 1.5;
+       
+        text-align: center;
+    }
+
+    a {
+    
+        text-decoration: none;
+        font-weight: bold;
+          
+        
+    }
+
+ 
 `;
+
   
 export default function DriverDetail() {
     const {id} = useParams(); 
@@ -117,23 +163,26 @@ export default function DriverDetail() {
             <CircularProgress /> 
         </div>
         :
+        //styling and made to display name and "API does not have this info" done by An (Sue) Ngo
+      <Div>
    <DriverDetailDiv team_colour={team_colour}>
-      <h1>Driver Detail</h1>
-        <img src={url} alt={openDriver?.full_name} width={420} />
-        {openDriver?.driver_number === driver?.permanentNumber ? <p></p> : <p>Current Number: {openDriver?.driver_number}</p>}
-        <p>Permanent Number: {driver?.permanentNumber}</p>
-        <p>Driver Code: {driver?.code}</p>
-        <p>Wikipedia page: <a href={driver?.url} target="_blank">{driver?.url}</a> </p>
-        <p>Given Name: {driver?.givenName}</p>
-        <p>Family Name: {driver?.familyName}</p>
-        <p>Date of Birth: {driver?.dateOfBirth}</p>
-        <p>Nationality: {driver?.nationality}</p>
-        <p>Team: {openDriver?.team_name}</p>
+      <h1>{openDriver?.full_name} </h1>
+        <img src={url} alt={openDriver?.full_name ?? "No Image Available"} width={420} />
+        <p>Current Number: {openDriver?.driver_number === driver?.permanentNumber ? "N/A" : openDriver?.driver_number ?? "API does not have this information"}</p>
+        <p>Permanent Number: {driver?.permanentNumber ?? "API does not have this information"}</p>
+        <p>Driver Code: {driver?.code ?? "API does not have this information"}</p>
+        <p>Wikipedia page: {driver?.url ? <a href={driver?.url} target="_blank">{driver?.url}</a> : "API does not have this information"}</p>
+        <p>Given Name: {driver?.givenName ?? "API does not have this information"}</p>
+        <p>Family Name: {driver?.familyName ?? "API does not have this information"}</p>
+        <p>Date of Birth: {driver?.dateOfBirth ?? "API does not have this information"}</p>
+        <p>Nationality: {driver?.nationality ?? "API does not have this information"}</p>
+        <p>Team: {openDriver?.team_name ?? "API does not have this information"}</p>
         <p>Championship Standings:</p>
-        <p>Position: {position}</p>
-        <p>Points: {points}</p>
-        <p>Wins: {wins}</p>
+        <p>Position: {position ?? "API does not have this information"}</p>
+        <p>Points: {points ?? "API does not have this information"}</p>
+        <p>Wins: {wins ?? "API does not have this information"}</p>
         </DriverDetailDiv>
+        </Div>
     }
     </>
   );

@@ -3,6 +3,7 @@ import { Driver, Position, Race } from "../types";
 import { useEffect, useState } from "react";
 import processPositionData from "../lib/raceResults";
 import CircularProgress from '@mui/material/CircularProgress';
+import styled from "styled-components";
 
 export default function RaceContent() {
     const {id} = useParams();
@@ -10,6 +11,57 @@ export default function RaceContent() {
     const [drivers, setDrivers] = useState<String[] | null>(null)
     let urlRace = `https://api.openf1.org/v1/meetings?meeting_key=${id}`
     let urlSession = `https://api.openf1.org/v1/sessions?meeting_key=${id}&session_type=Race`
+
+    // STYLING DONE BY AN (SUE) NGO
+    const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #92140c;
+    height: 100vh;
+    padding: 5%;
+    color: #fff8e7;
+    width: 50%;
+    margin: 1% auto;
+    font-family: 'Monaco', sans-serif;
+    border-radius: 25px;
+    .content-box {
+
+        color: #fff8e7;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 15px;
+        width: 60%; 
+       
+    }
+
+    h2, p {
+        margin: 1rem 0;
+    }
+
+    ol {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    ul {
+        background-color: #fff8e7; 
+        color: #92140c; 
+        text-align: center;
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+        border-radius: 10px;
+       
+    }
+
+`;
+    const Wrap = styled.div`
+        background-color: #fff8e7;
+        padding-top: 0.2%;
+    `;
+
 
     useEffect(() => {
         async function getInfo() {
@@ -46,15 +98,19 @@ export default function RaceContent() {
             <CircularProgress />
         </div>
         ) : (
-        <div>
+        <Wrap>
+        <Div>
             <h2>{race.meeting_name}</h2>
             <p>Country: {race.country_name}</p>
             <p>Date: {race.date_start}</p>
+            <h2>Race Results</h2>
             <ol>
+                
                 {drivers.map((d) => (
-                    <li>{d}</li>
+                    <ul>{d}</ul>
                 ))}
             </ol>
-        </div>
+        </Div>
+        </Wrap>
     );
 }
