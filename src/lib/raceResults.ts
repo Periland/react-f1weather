@@ -1,3 +1,7 @@
+//File: raceResults.tsx
+//Author: Awad Khawaja (awadk@bu.edu)
+//Description: function to take information from race position
+//data and get the final results of the race
 import { Position } from "../types";
 
 
