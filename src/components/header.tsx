@@ -1,5 +1,5 @@
 //
-// PAGE CREATED AND STYLED BY AN (SUE) NGO
+// PAGE CREATED AND STYLED BY AN (SUE) NGO (anngo@bu.edu)
 //
 import styled from "styled-components";
 import { Link } from "react-router-dom";

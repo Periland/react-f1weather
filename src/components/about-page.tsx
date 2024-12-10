@@ -1,6 +1,6 @@
 //
 //
-// PAGE CREATED AND STYLED BY AN (SUE) NGO
+// PAGE CREATED AND STYLED BY AN (SUE) NGO (anngo@bu.edu)
 //
 //
 
@@ -91,8 +91,8 @@ export default function AboutPage() {
             <PersonContainer>
                 <Image src={AwadImage} alt="Awad" />
                 <TextContainer>
-                    <h1>Awad</h1>
-                    <p>I’m An (Sue) Ngo, a senior majoring in Computer Science. I’m deeply interested in web development, distributed systems, and hardware technologies, and I enjoy working on projects with groupmates. Outside of academics, I’m a big fan of Formula 1 racing, and my favorite team is Ferrari! I also love exploring new ideas, solving challenging problems, and collaborating with others to bring ambitious projects to life</p>
+                    <h1>Awad Khawaja</h1>
+                    <p>My name is Awad Khawaja and I am a senior majoring in computer science at Boston University. I have always had a passion for financial markets so I hope to pursue a career in technology with in the finance industry. I am someone who loves to work in a collaborative environment where I can learn from my peers and continue to grow my skillset. </p>
                 </TextContainer>
             </PersonContainer>
         </AboutDiv>
